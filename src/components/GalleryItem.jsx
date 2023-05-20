@@ -12,21 +12,24 @@ export default function GalleryItem({item}) {
     } = item
 
     const simpleStyle = {
-        width: '25vw',
-        height: '20vh',
-        border: '1px solid black',
-        margin: '1rem'
+        textShadow: '0px 0px 10px black',
+        width: '60%',
+        borderRadius: '5px',
+        padding: '1rem',
+        margin: '1rem',
+        backgroundImage: `url(${artworkUrl100})`,
+        backgroundSize: 'cover',
+        transitionDuration: '.5s',
     }
 
     const detailStyle = {
-        width: '80vw',
-        height: '40vh',
-        border: '1px solid black',
+        width: '100%',
+        borderRadius: '5px',
+        padding: '1rem',
         margin: '1rem',
         backgroundImage: `url(${artworkUrl100})`,
-        backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-        color: 'yellow'
+        transitionDuration: '.5s',
     }
 
     const simpleView = () => {
@@ -53,9 +56,9 @@ export default function GalleryItem({item}) {
         <div
             onClick={() => setView(!view)}
             style={{ 
-                display: 'inline-block',
-                background: 'white',
-                cursor: 'pointer'
+                width: '25vw',
+                display: 'inline block',
+                cursor: 'pointer',
             }}
         >
             {view ? detailView() : simpleView()}
