@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function GalleryItem({item}) {
     let [view, setView] = useState(false)
@@ -8,28 +9,28 @@ export default function GalleryItem({item}) {
         collectionName,
         primaryGenreName,
         releaseDate,
-        artworkUrl100
+        artworkUrl100,
+        artistId,
+        collectionId,
+        trackId
     } = item
 
     const simpleStyle = {
-        textShadow: '0px 0px 10px black',
-        width: '60%',
         borderRadius: '5px',
         padding: '1rem',
         margin: '1rem',
         backgroundImage: `url(${artworkUrl100})`,
-        backgroundSize: 'cover',
-        transitionDuration: '.5s',
+        backgroundSize: '500px',
+        backgroundPosition: 'center',
     }
 
     const detailStyle = {
-        width: '100%',
         borderRadius: '5px',
         padding: '1rem',
-        margin: '1rem',
+        margin: 'auto',
         backgroundImage: `url(${artworkUrl100})`,
         backgroundSize: 'cover',
-        transitionDuration: '.5s',
+        backgroundPosition: 'center',
     }
 
     const simpleView = () => {
@@ -44,8 +45,18 @@ export default function GalleryItem({item}) {
     const detailView = () => {
         return(
             <div style={detailStyle}>
-                <h2>{trackName}</h2>
-                <h3>{collectionName}</h3>
+                <h2>
+                    <Link to={`/artist/${artistId || trackId}`}>
+                        <button className='outline'>{trackName}</button>
+                    </Link>
+                    
+                    </h2>
+                <h3>
+                    <Link to={`/album/${collectionId}`}>
+                        <button className='outline'>{collectionName}</button>
+                        </Link>
+                    
+                    </h3>
                 <h4>{primaryGenreName}</h4>
                 <h4>{releaseDate}</h4>
             </div>
@@ -57,9 +68,9 @@ export default function GalleryItem({item}) {
             onClick={() => setView(!view)}
             style={{ 
                 width: '25vw',
-                display: 'inline block',
-                cursor: 'pointer',
+                height: 'auto',
             }}
+            
         >
             {view ? detailView() : simpleView()}
         </div>

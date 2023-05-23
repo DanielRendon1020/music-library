@@ -9,7 +9,7 @@ export default function Searchbar() {
             <input
                 ref={term}
                 type="text"
-                placeholder='Enter search term here'
+                placeholder='Search 🔎'
                 onChange={(e) => handleSearch(e, term.current.value)}
             />
             <input type="submit"/>
