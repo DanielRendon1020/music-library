@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function GalleryItem({item}) {
     let [view, setView] = useState(false)
@@ -8,25 +9,28 @@ export default function GalleryItem({item}) {
         collectionName,
         primaryGenreName,
         releaseDate,
-        artworkUrl100
+        artworkUrl100,
+        artistId,
+        collectionId,
+        trackId
     } = item
 
     const simpleStyle = {
-        width: '25vw',
-        height: '20vh',
-        border: '1px solid black',
-        margin: '1rem'
+        borderRadius: '5px',
+        padding: '1rem',
+        margin: '1rem',
+        backgroundImage: `url(${artworkUrl100})`,
+        backgroundSize: '500px',
+        backgroundPosition: 'center',
     }
 
     const detailStyle = {
-        width: '80vw',
-        height: '40vh',
-        border: '1px solid black',
-        margin: '1rem',
+        borderRadius: '5px',
+        padding: '1rem',
+        margin: 'auto',
         backgroundImage: `url(${artworkUrl100})`,
-        backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-        color: 'yellow'
+        backgroundPosition: 'center',
     }
 
     const simpleView = () => {
@@ -41,8 +45,18 @@ export default function GalleryItem({item}) {
     const detailView = () => {
         return(
             <div style={detailStyle}>
-                <h2>{trackName}</h2>
-                <h3>{collectionName}</h3>
+                <h2>
+                    <Link to={`/artist/${artistId || trackId}`}>
+                        <button className='outline'>{trackName}</button>
+                    </Link>
+                    
+                    </h2>
+                <h3>
+                    <Link to={`/album/${collectionId}`}>
+                        <button className='outline'>{collectionName}</button>
+                        </Link>
+                    
+                    </h3>
                 <h4>{primaryGenreName}</h4>
                 <h4>{releaseDate}</h4>
             </div>
@@ -53,10 +67,10 @@ export default function GalleryItem({item}) {
         <div
             onClick={() => setView(!view)}
             style={{ 
-                display: 'inline-block',
-                background: 'white',
-                cursor: 'pointer'
+                width: '25vw',
+                height: 'auto',
             }}
+            
         >
             {view ? detailView() : simpleView()}
         </div>
