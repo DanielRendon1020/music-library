@@ -41,10 +41,10 @@ export default function AlbumView() {
   });
 
   const showAlbumName = () => {
-    return (albumData.lenght ? (
+    return (albumData.length ? (
       <h3>{albumData[0].collectionName}</h3>
     ) : (
-      <h3>Loading...</h3>
+      <article aria-busy="true"></article>
     ));
   };
 

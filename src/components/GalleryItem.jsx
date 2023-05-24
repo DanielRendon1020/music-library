@@ -20,24 +20,33 @@ export default function GalleryItem({item}) {
         padding: '1rem',
         margin: '1rem',
         backgroundImage: `url(${artworkUrl100})`,
-        backgroundSize: '500px',
+        backgroundSize: 'cover',
         backgroundPosition: 'center',
+        transitionDuration: '0.5s',
+        cursor: 'pointer',
     }
 
     const detailStyle = {
+        width: '100vw',
+        height: '100%',
         borderRadius: '5px',
         padding: '1rem',
-        margin: 'auto',
+        margin: '1rem',
         backgroundImage: `url(${artworkUrl100})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     }
 
+    const backdrop = {
+        backdropFilter: 'blur(5px) brightness(1.3)',
+        borderRadius: '5px',
+    }
+
     const simpleView = () => {
         return(
             <div style={simpleStyle}>
-                <h3>{trackName}</h3>
-                <h4>{collectionName}</h4>
+                <h3 style={backdrop}>{trackName}</h3>
+                <h4 style={backdrop}>{collectionName}</h4>
             </div>
         )
     }
@@ -45,20 +54,18 @@ export default function GalleryItem({item}) {
     const detailView = () => {
         return(
             <div style={detailStyle}>
-                <h2>
+                <h1 style={backdrop}>
                     <Link to={`/artist/${artistId || trackId}`}>
-                        <button className='outline'>{trackName}</button>
+                        {trackName}
                     </Link>
-                    
-                    </h2>
-                <h3>
+                </h1>
+                <h1 style={backdrop}>
                     <Link to={`/album/${collectionId}`}>
-                        <button className='outline'>{collectionName}</button>
-                        </Link>
-                    
-                    </h3>
-                <h4>{primaryGenreName}</h4>
-                <h4>{releaseDate}</h4>
+                        {collectionName}
+                    </Link>
+                </h1>
+                <h3>{primaryGenreName}</h3>
+                <h3>{releaseDate}</h3>
             </div>
         )
     }
@@ -66,11 +73,6 @@ export default function GalleryItem({item}) {
     return (
         <div
             onClick={() => setView(!view)}
-            style={{ 
-                width: '25vw',
-                height: 'auto',
-            }}
-            
         >
             {view ? detailView() : simpleView()}
         </div>
