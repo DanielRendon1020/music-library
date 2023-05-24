@@ -25,7 +25,7 @@ export default function ArtistView() {
     return (
       <div key={i}>
         <Link to={`/album/${album.collectionId}`}>
-          <p>{album.collectionName}</p>
+          <p style={{display: 'inline-block'}}>{album.collectionName}</p>
         </Link>
       </div>
     );
@@ -45,10 +45,10 @@ export default function ArtistView() {
   };
 
   const showArtistName = () => {
-    return (artistData.lenght ? (
+    return (artistData.length ? (
       <h3>{artistData[0].artistName}</h3>
     ) : (
-      <h3>Loading...</h3>
+      <article aria-busy="true"></article>
     ));
   };
 

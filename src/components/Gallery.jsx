@@ -9,15 +9,14 @@ export default function Gallery() {
   });
 
   return (
-    <div className="grid"
-      // style={{
-      //   display: "flex",
-      //   flexWrap: "wrap",
-      //   justifyContent: "space-evenly",
-      //   alignItems: "center",
-      //   alignContent: "center",
-      //   transitionDuration: '0.5s',
-      // }}
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        alignContent: "center",
+      }}
     >
       {galleryItems}
     </div>
