@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { ButtonContext } from "../contexts/ButtonContext";
 
 export default function ArtistView() {
   const navigate = useNavigate();
+
+  const {styling} = useContext(ButtonContext);
 
   const { id } = useParams();
   const [artistData, setArtistData] = useState([]);
@@ -33,7 +36,7 @@ export default function ArtistView() {
 
   const navButtons = () => {
     return (
-      <div>
+      <div style={styling}>
         <button type="button" onClick={() => navigate(-1)}>
           Back
         </button>
