@@ -16,6 +16,7 @@ export default function GalleryItem({item}) {
     } = item
 
     const simpleStyle = {
+        textShadow: '0px 0px 5px #000',
         borderRadius: '5px',
         padding: '1rem',
         margin: '1rem',
@@ -27,6 +28,7 @@ export default function GalleryItem({item}) {
     }
 
     const detailStyle = {
+        textShadow: '0px 0px 5px #000',
         width: '100vw',
         height: '100%',
         borderRadius: '5px',
@@ -38,8 +40,9 @@ export default function GalleryItem({item}) {
     }
 
     const backdrop = {
-        backdropFilter: 'blur(5px) brightness(1.3)',
+        backdropFilter: 'blur(5px) brightness(0.7)',
         borderRadius: '5px',
+        padding: 'auto'
     }
 
     const simpleView = () => {
