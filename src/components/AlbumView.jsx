@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { ButtonContext } from "../contexts/ButtonContext";
 
 export default function AlbumView() {
   const navigate = useNavigate();
+
+  const {stylingDiv, stylingBtn} = useContext(ButtonContext);
 
   const { id } = useParams();
   const [albumData, setAlbumData] = useState([]);
@@ -21,11 +24,11 @@ export default function AlbumView() {
 
   const navButtons = () => {
     return (
-      <div>
-        <button type="button" onClick={() => navigate(-1)}>
+      <div style={stylingDiv}>
+        <button style={stylingBtn} type="button" onClick={() => navigate(-1)}>
           Back
         </button>
-        <button type="button" onClick={() => navigate("/")}>
+        <button style={stylingBtn} type="button" onClick={() => navigate("/")}>
           Home
         </button>
       </div>
@@ -48,9 +51,12 @@ export default function AlbumView() {
     ));
   };
 
+  const album_img = albumData[0].artworkUrl100;
+
   return (
     <div>
       {navButtons()}
+      <img src={album_img} alt={albumData.collectionName} />
       {showAlbumName()}
       {renderSongs}
     </div>

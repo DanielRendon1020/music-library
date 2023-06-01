@@ -1,10 +1,14 @@
 import { createContext } from "react";
 
 export const ButtonContext = createContext({
-  styling: {
+  stylingDiv: {
     display: "flex",
     justifyContent: "space-between",
-    width: "fit-content",
-    // margin: "1rem auto",
+    
+    
   },
+  stylingBtn: {
+    margin: "1rem",
+    width: "fit-content",
+  }
 });
